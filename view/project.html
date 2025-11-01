@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jahid Hasan - Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #5a52d5;
+            --secondary: #ff6584;
+            --dark: #121212;
+            --dark-light: #1e1e1e;
+            --dark-lighter: #2d2d2d;
+            --text: #e0e0e0;
+            --text-light: #a0a0a0;
+            --border: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .here-header {
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .navlinks {
+            display: flex;
+            list-style: none;
+        }
+
+        .navlinks li {
+            margin-left: 1.5rem;
+        }
+
+        .navlinks a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .navlinks a:hover, .navlinks a.active {
+            color: var(--primary);
+        }
+
+        .navlinks a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .navlinks a:hover::after, .navlinks a.active::after {
+            width: 100%;
+        }
+
+        .togglebtn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .togglebtn span {
+            height: 3px;
+            width: 25px;
+            background-color: white;
+            margin: 3px 0;
+            transition: var(--transition);
+        }
+
+        /* Page Title */
+        .sub-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 8rem 0 3rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .sub-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Projects Section */
+        #myproject {
+            padding: 2rem 0 5rem;
+        }
+
+        .container_my-project {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .work-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .work {
+            background-color: var(--dark-light);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .work.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .work:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+
+        .work img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .work:hover img {
+            transform: scale(1.05);
+        }
+
+        .layer {
+            width: 100%;
+            height: 0;
+            background: linear-gradient(rgba(108, 99, 255, 0.85), rgba(255, 101, 132, 0.85));
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            text-align: center;
+            transition: height 0.5s ease;
+        }
+
+        .work:hover .layer {
+            height: 100%;
+        }
+
+        .layer h3 {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .layer p {
+            color: white;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .layer p::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .layer p::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        .layer a {
+            margin-top: 10px;
+            color: var(--primary);
+            background-color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .layer a:hover {
+            background-color: var(--dark);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Project Tags */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .project-tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background-color: var(--dark-lighter);
+            color: var(--text-light);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-light);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .footer-logo i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .work-list {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navlinks {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--dark-light);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 2rem;
+                transition: var(--transition);
+                z-index: 999;
+                border-left: 1px solid var(--border);
+            }
+
+            .navlinks.active {
+                right: 0;
+            }
+
+            .navlinks li {
+                margin: 1.5rem 0;
+            }
+
+            .togglebtn {
+                display: flex;
+            }
+
+            .togglebtn.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .togglebtn.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .togglebtn.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .sub-title {
+                font-size: 2rem;
+                margin: 7rem 0 2rem;
+            }
+
+            .work-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sub-title {
+                font-size: 1.8rem;
+            }
+            
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="here-header">
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <!-- <i class="fa-solid fa-j"></i> -->
+                    <div class="logo-text">Jahid Hasan</div>
+                </div>
+                <nav>
+                    <div class="togglebtn" id="toggleBtn"> 
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="navlinks" id="navLinks">
+                        <li><a href="index.html">Home</a></li> 
+                        <li><a href="education.html">Education</a></li> 
+                        <li><a href="project.html" class="active">Projects</a></li> 
+                        <li><a href="blog.html">Blog</a></li> 
+                        <li><a href="contact.html">Contact</a></li> 
+                    </ul>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <div id="myproject">
+        <div class="container_my-project">
+            <h1 class="sub-title">My Projects</h1>
+            
+            <!-- Project Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="Desktop Application">Desktop Application</button>
+                <button class="filter-btn" data-filter="Web Side">Web Development</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                <button class="filter-btn" data-filter="data">Data Science</button>
+            </div>
+            
+            <div class="work-list">
+                <!-- Project 1 -->
+                <div class="work" data-category="Desktop Application">
+                    <img src="../image/project1.png" alt="E-Commerce Platform">
+                    <div class="layer">
+                        <h3>Restaurants</h3>
+                        <p>A full-stack e-commerce solution built with C# and Mysql. Features include user authentication, product catalog, shopping cart, payment integration, and admin dashboard.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">C#</span>
+                            <span class="project-tag">Mysql</span>
+                        </div>
+                        <a href="https://github.com/Jahid1217/Restaurants-Applications"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="work" data-category="Web Side">
+                    <img src="../image/Project-2.png" alt="AI Image Recognition">
+                    <div class="layer">
+                        <h3>DocLab</h3>
+                        <p>Machine learning model that classifies images with 95% accuracy. Built with TensorFlow and Python, this system can identify objects, faces, and scenes in real-time.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">.NET</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">Html</span>
+                            <span class="project-tag">C#</span>
+                            <span class="project-tag">Css</span>
+                        </div>
+                        <a href="https://github.com/Jahid1217/Hospital_Management_System/tree/main/WebApplicationDocLab"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="work" data-category="Desktop Application">
+                    <img src="../image/Project-3.png" alt="Fitness Tracker App">
+                    <div class="layer">
+                        <h3>Raiway Reservation System</h3>
+                        <p>A cross-platform mobile application for tracking workouts, nutrition, and progress. Built with React Native, featuring personalized workout plans and social sharing capabilities.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">C#</span>
+                            <span class="project-tag">Mysql</span>
+                        </div>
+                        <a href="https://github.com/Jahid1217/Railway-Applications"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="work" data-category="Desktop Application">
+                    <img src="../image/Project-4.png" alt="Data Visualization Dashboard">
+                    <div class="layer">
+                        <h3>Bank Loan Systen</h3>
+                        <p>Interactive dashboard for analyzing and visualizing complex datasets. Built with D3.js and Python, featuring real-time data updates and customizable charts.</p>
+                        <div class="project-tags">
+                             <span class="project-tag">C#</span>
+                            <span class="project-tag">Mysql</span>
+                        </div>
+                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="work" data-category="Desktop Application">
+                    <img src="../image/Project-5.png" alt="Portfolio Website">
+                    <div class="layer">
+                        <h3>Kiron Finance</h3>
+                        <p>A responsive portfolio website showcasing my projects and skills. Built with modern web technologies including HTML5, CSS3, JavaScript, and Bootstrap.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">C#</span>
+                            <span class="project-tag">Mysql</span>
+                        </div>
+                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <!-- Project 6 -->
+                <div class="work" data-category="Desktop Application">
+                    <img src="../image/Project-6.png" alt="Chatbot Application">
+                    <div class="layer">
+                        <h3>Modern Dashboard</h3>
+                        <p>An intelligent chatbot that uses natural language processing to provide customer support. Built with Python, NLTK, and integrated with various messaging platforms.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">C#</span>
+                            <span class="project-tag">Mysql</span>
+                        </div>
+                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <!-- Project 7 -->
+                <div class="work" data-category="Desktop Application">
+                    <img src="../image/Project-5.png" alt="Portfolio Website">
+                    <div class="layer">
+                        <h3>Kiron Finance</h3>
+                        <p>A responsive portfolio website showcasing my projects and skills. Built with modern web technologies including HTML5, CSS3, JavaScript, and Bootstrap.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">C#</span>
+                            <span class="project-tag">Mysql</span>
+                        </div>
+                        <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <!-- <i class="fa-solid fa-j"> -->
+
+                    </i> Jahid Hasan
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="education.html">Education</a>
+                    <a href="project.html">Projects</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <p class="copyright">&copy; 2024 Jahid Hasan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const toggleBtn = document.getElementById('toggleBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        toggleBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            toggleBtn.classList.toggle('active');
+        });
+
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Project filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projects = document.querySelectorAll('.work');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                projects.forEach(project => {
+                    if (filterValue === 'all' || project.getAttribute('data-category') === filterValue) {
+                        project.style.display = 'block';
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Scroll animation for projects
+        function checkScroll() {
+            projects.forEach(project => {
+                const projectTop = project.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (projectTop < windowHeight - 100) {
+                    project.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
+</body>
+</html>
