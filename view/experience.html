@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jahid Hasan - Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #6c63ff;
+            --primary-dark: #5a52d5;
+            --secondary: #ff6584;
+            --dark: #121212;
+            --dark-light: #1e1e1e;
+            --dark-lighter: #2d2d2d;
+            --text: #e0e0e0;
+            --text-light: #a0a0a0;
+            --border: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .here-header {
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .navlinks {
+            display: flex;
+            list-style: none;
+        }
+
+        .navlinks li {
+            margin-left: 1.5rem;
+        }
+
+        .navlinks a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .navlinks a:hover, .navlinks a.active {
+            color: var(--primary);
+        }
+
+        .navlinks a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .navlinks a:hover::after, .navlinks a.active::after {
+            width: 100%;
+        }
+
+        .togglebtn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .togglebtn span {
+            height: 3px;
+            width: 25px;
+            background-color: white;
+            margin: 3px 0;
+            transition: var(--transition);
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 8rem 0 3rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Experience Section */
+        .experience-section {
+            padding: 2rem 0 5rem;
+        }
+
+        .experience-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .tab-btn {
+            background-color: var(--dark-lighter);
+            color: var(--text-light);
+            border: 1px solid var(--border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Experience Cards */
+        .experience-card {
+            background-color: var(--dark-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-info {
+            flex: 1;
+        }
+
+        .experience-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .company-name {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .experience-duration {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .experience-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .company-logo-right {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 2rem;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .company-logo-right img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .responsibilities {
+            margin-bottom: 1.5rem;
+        }
+
+        .responsibilities h4 {
+            margin-bottom: 1rem;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .responsibilities ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .responsibilities li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .responsibilities li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background-color: var(--dark-lighter);
+            color: var(--text-light);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .tech-tag:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Skills Overview */
+        .skills-overview {
+            padding: 3rem 0;
+            background-color: var(--dark-light);
+            margin-top: 3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--dark-lighter);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-category h3 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .skill-category h3 i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-name {
+            flex: 1;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background-color: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-left: 10px;
+            flex: 2;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            transition: width 1.5s ease;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-light);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .footer-logo i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .experience-header {
+                flex-direction: column;
+            }
+            
+            .company-logo-right {
+                margin-left: 0;
+                margin-top: 1rem;
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navlinks {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--dark-light);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 2rem;
+                transition: var(--transition);
+                z-index: 999;
+                border-left: 1px solid var(--border);
+            }
+
+            .navlinks.active {
+                right: 0;
+            }
+
+            .navlinks li {
+                margin: 1.5rem 0;
+            }
+
+            .togglebtn {
+                display: flex;
+            }
+
+            .togglebtn.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .togglebtn.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .togglebtn.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .page-title {
+                font-size: 2rem;
+                margin: 7rem 0 2rem;
+            }
+
+            .experience-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-btn {
+                width: 200px;
+                text-align: center;
+            }
+
+            .company-logo-right {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .experience-card {
+                padding: 1.5rem;
+            }
+            
+            .skills-grid, .cert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .company-logo-right {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="here-header">
+        <div class="container">
+            <header>
+                <div class="logo">
+                    <!-- <i class="fa-solid fa-j"></i> -->
+                    <div class="logo-text">Jahid Hasan</div>
+                </div>
+                <nav>
+                    <div class="togglebtn" id="toggleBtn"> 
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="navlinks" id="navLinks">
+                        <li><a href="index.html">Home</a></li> 
+                        <li><a href="experience.html" class="active">Experience</a></li> 
+                        <li><a href="education.html">Education</a></li> 
+                        <li><a href="project.html">Projects</a></li> 
+                        <li><a href="blog.html">Blog</a></li> 
+                        <li><a href="contact.html">Contact</a></li> 
+                    </ul>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">Professional Experience</h1>
+        
+        <!-- Experience Tabs -->
+        <div class="experience-tabs">
+            <button class="tab-btn active" data-tab="work">Work Experience</button>
+            <button class="tab-btn" data-tab="skills">Technical Skills</button>
+        </div>
+
+        <!-- Work Experience Tab -->
+        <div class="tab-content active" id="work-tab">
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="experience-info">
+                        <h3>Junior SQA Engineer</h3>
+                        <span class="company-name">Karooth IT (BD) Ltd</span>
+                        <span class="experience-duration">August 2025 - Present</span>
+                        <p class="experience-description">
+                            Ensuring software quality through comprehensive testing methodologies and automation frameworks.
+                        </p>
+                    </div>
+                    <div class="company-logo-right">
+                        <img src="../image/Karooth.jpg" alt="Karooth IT Logo">
+                    </div>
+                </div>
+                
+                <div class="responsibilities">
+                    <h4>Key Responsibilities:</h4>
+                    <ul>
+                        <li>Develop and execute test cases for web and mobile applications</li>
+                        <li>Perform manual and automated testing using Selenium and Cypress</li>
+                        <li>Collaborate with development teams to identify and resolve bugs</li>
+                        <li>Create and maintain test documentation and reports</li>
+                        <li>Implement CI/CD pipelines for automated testing</li>
+                    </ul>
+                </div>
+                
+                <div class="technologies">
+                    <span class="tech-tag">Selenium</span>
+                    <span class="tech-tag">Burp Suite</span>
+                    <span class="tech-tag">Taiga</span>
+                    <span class="tech-tag">Postman</span>
+                    <span class="tech-tag">Git</span>
+                </div>
+            </div>
+        </div> <!-- Closing div for work-tab -->
+
+        <!-- Skills Tab -->
+        <div class="tab-content" id="skills-tab">
+            <div class="skills-overview">
+                <div class="container">
+                    <h2 class="page-title">Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                            <ul class="skill-list">
+                                <li>
+                                    <span class="skill-name">Python</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 90%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="skill-name">JavaScript</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 85%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="skill-name">Java</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 80%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="skill-name">C++</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 75%"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3><i class="fas fa-laptop-code"></i> Web Development</h3>
+                            <ul class="skill-list">
+                                <li>
+                                    <span class="skill-name">HTML5/CSS3</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 95%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="skill-name">React</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 80%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="skill-name">Node.js</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 75%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="skill-name">MongoDB</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 70%"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3><i class="fas fa-tools"></i> Testing & QA</h3>
+                            <ul class="skill-list">
+                                <li>
+                                    <span class="skill-name">Selenium</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 85%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="skill-name">Manual Testing</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 90%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="skill-name">Test Case Design</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 88%"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="skill-name">Bug Tracking</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 85%"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <!-- <i class="fa-solid fa-j"></i>  -->
+                    Jahid Hasan
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="experience.html">Experience</a>
+                    <a href="education.html">Education</a>
+                    <a href="project.html">Projects</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <p class="copyright">&copy; 2024 Jahid Hasan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const toggleBtn = document.getElementById('toggleBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        toggleBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            toggleBtn.classList.toggle('active');
+        });
+
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Animate skill bars when they come into view
+        const skillBars = document.querySelectorAll('.skill-level');
+        
+        function animateSkillBars() {
+            skillBars.forEach(bar => {
+                const barTop = bar.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (barTop < windowHeight - 100) {
+                    // The width is already set in the style attribute
+                    // This just triggers the animation
+                    bar.style.transition = 'width 1.5s ease';
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animateSkillBars);
+        window.addEventListener('load', animateSkillBars);
+    </script>
+</body>
+</html>
